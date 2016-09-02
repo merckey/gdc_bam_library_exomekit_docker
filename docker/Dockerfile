@@ -13,4 +13,5 @@ RUN apk add --update \
     && git clone https://github.com/jeremiahsavage/gdc_bam_library_exomekit_docker.git \
     && mv gdc_bam_library_exomekit_docker/*.json ./ \
     && mv gdc_bam_library_exomekit_docker/intervals ./ \
+    && rm -rf gdc_bam_library_exomekit_docker \
     && cd -
