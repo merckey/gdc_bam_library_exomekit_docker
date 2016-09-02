@@ -3,6 +3,7 @@ FROM alpine:3.4
 MAINTAINER Jeremiah H. Savage <jeremiahsavage@gmail.com>
 
 RUN apk add --update \
+        bash \
         ca-certificates \
         git \
         openssl \
