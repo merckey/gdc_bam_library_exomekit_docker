@@ -5,7 +5,7 @@ MAINTAINER Jeremiah H. Savage <jeremiahsavage@gmail.com>
 RUN apk add --update \
         ca-certificates \
         openssl \
-        python \
+        python3 \
     && update-ca-certificates \
     && rm -rf /var/cache/apk/* \
     && cd /usr/local/share \
