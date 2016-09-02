@@ -4,10 +4,13 @@ MAINTAINER Jeremiah H. Savage <jeremiahsavage@gmail.com>
 
 RUN apk add --update \
         ca-certificates \
+        git \
         openssl \
         python3 \
     && update-ca-certificates \
     && rm -rf /var/cache/apk/* \
     && cd /usr/local/share \
-    && wget https://github.com/jeremiahsavage/gdc_bam_library_exomekit_docker/raw/master/bam_libraryname_capturekey.json \
+    && git clone https://github.com/jeremiahsavage/gdc_bam_library_exomekit_docker.git \
+    && mv gdc_bam_library_exomekit_docker/*.json ./ \
+    && mv gdc_bam_library_exomekit_docker/intervals ./ \
     && cd -
