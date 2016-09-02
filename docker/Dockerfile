@@ -6,6 +6,7 @@ RUN apk add --update \
         ca-certificates \
         openssl \
     && update-ca-certificates \
+    && rm -rf /var/cache/apk/* \
     && cd /usr/local/share \
     && wget https://github.com/jeremiahsavage/gdc_bam_library_exomekit_docker/raw/master/bam_libraryname_capturekey.json \
     && cd -
