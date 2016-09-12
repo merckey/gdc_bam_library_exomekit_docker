@@ -1,18 +1,12 @@
-FROM alpine:3.4
+FROM ubuntu:xenial-20160809
 
 MAINTAINER Jeremiah H. Savage <jeremiahsavage@gmail.com>
 
-RUN apk add --update \
-        bash \
-        ca-certificates \
-        git \
-        openssl \
-        python3 \
-    && update-ca-certificates \
-    && rm -rf /var/cache/apk/* \
-    && cd /usr/local/share \
-    && git clone https://github.com/jeremiahsavage/gdc_bam_library_exomekit_docker.git \
-    && mv gdc_bam_library_exomekit_docker/*.json ./ \
-    && mv gdc_bam_library_exomekit_docker/intervals ./ \
-    && rm -rf gdc_bam_library_exomekit_docker \
-    && cd -
+ENV version 0.1
+
+RUN apt-get update \
+    && apt-get install -y \
+       python3-pip \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+    && pip3 install gdc_bam_library_exomekit_docker
