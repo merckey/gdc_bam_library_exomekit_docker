@@ -1,0 +1,334 @@
+
+
+def get_kit_from_target_set(target_set):
+    known_targets = ['cancer_2000gene_shift170', 'fhs_jhs_pilot', 'tcga_6k_genes',
+                     'whole_exome_agilent_1.1_refseq_plus_3_boosters', 'whole_exome_agilent_designed_120',
+                     'whole_exome_agilent_plus_tcga_6k', 'whole_exome_refseq_coding', 'whole_exome_refseq_coding'
+    ]
+    if target_set not in known_targets:
+        sys.exit('unknown: %s' % target_set)
+    return target_set
+
+def get_library_data(json_data, bam_name, library_name):
+    if bam_name in json_data:
+        bam_data = json_data.get(bam_name)
+        if library_name in bam_data:
+            library_data = bam_data.get(library_name)
+            return library_data
+    return None
+
+def get_target_set(json_data, bam_name, library_name, logger):
+    library_data = get_library_data(json_data, bam_name, library_name)
+    if library_data is None:
+        return None
+    if 'target_set' in library_data:
+        target_set_list = library_data.get('target_set')
+        if len(target_set_list) == 0:
+            return None
+        elif len(target_set) > 1:
+            sys.exit(target_set_list)
+        elif len(target_set) == 1:
+            return target_set_list[0]
+    return None
+
+def get_capture_singlename_kit(catalog_number):
+    if catalog_number == '05860504001':
+        return 'SeqCap_EZ_Exome_v2'
+    elif catalog_number == '931070':
+        return 'whole_exome_agilent_1.1_refseq_plus_3_boosters'
+    elif catalog_number == 'Obsolete':
+        return 'NimbleGen Sequence Capture 2.1M Human Exome Array'
+    elif catalog_number == 'S0293689':
+        return 'SureSelect Human All Exon 38 Mb v2'
+    elif catalog_number == 'S02972011':
+        return 'SureSelect Human All Exon 50Mb Kit'
+    elif catalog_number == 'S04380110':
+        return 'SureSelectXT Human All Exon V5, 16'
+    sys.exit(catalog_number)
+    return
+
+def get_capture__kit(catalog_number, capture_kit):
+    cached_target_file_url = capture_kit.get('cached_target_file_url', None)
+    is_custom = capture_kit.get('is_custom', None)
+    probe_file_url = capture_kit.get('probe_file_url', None)
+    reagent_name = capture_kit.get('reagent_name', None)
+    reagent_vendor = capture_kit.get('reagent_vendor', None)
+    target_file_url = capture_kit.get('target_file_url', None)
+
+    if catalog_number == '05860504001':
+        if cached_target_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/a6408d236823a1abb63adb8c38caf37442e20109#Design_Annotation_files/Target_Regions/SeqCap_EZ_Exome_v2.bed':
+            sys.exit(cached_target_file_url)
+        if is_custom != '':
+            sys.exit(is_custom)
+        if probe_file_url is not None:
+            sys.exit(probe_file_url)
+        if reagent_name != 'Nimblegen SeqCap EZ Human Exome Library v2.0':
+            sys.exit(reagent_name)
+        if reagent_vendor != 'Nimblegen':
+            sys.exit(reagent_vendor)
+        if target_file_url != 'http://www.nimblegen.com/downloads/annotation/ez_exome_v2/SeqCapEZ_Exome_v2.0_Design_Annotation_files.zip#Design_Annotation_files/Target_Regions/SeqCap_EZ_Exome_v2.bed':
+            sys.exit(target_file_url)
+        return 'SeqCap_EZ_Exome_v2'
+
+    if catalog_number == '06 465 668 001':
+        if (cached_target_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/9129b8e749210d4b74a428448e01a6217f94e0ee/cache/d9d1988de1e3131c585cc963a433844953fae95c#VCRome_2_1_hg19_primary_targets.bed' or
+            cached_target_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/d9d1988de1e3131c585cc963a433844953fae95c#VCRome_2_1_hg19_primary_targets.bed' or
+            cached_target_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d993d72ee92cd14de3c4a6da435f4a29e932a9db/cache/d9d1988de1e3131c585cc963a433844953fae95c#VCRome_2_1_hg19_primary_targets.bed'):
+            sys.exit(cached_target_file_url)
+        if (is_custom != '' or
+            is_custom != 'No'):
+            sys.exit(is_custom)
+        if probe_file_url is not None:
+            sys.exit(probe_file_url)
+        if (reagent_name != 'VCRome V2.1' or
+            reagent_name != 'SeqCap EZ HGSC VCRome'):
+            sys.exit(reagent_name)
+        if (reagent_vendor != 'Nimblegen' or
+            reagent_vendor != 'NimbleGen'):
+            sys.exit(reagent_vendor)
+        if target_file_url != 'http://www.nimblegen.com/downloads/annotation/ez_vcrome_nov2014/VCRome_2.1_design_files.zip#VCRome_2_1_hg19_primary_targets.bed':
+            sys.exit(target_file_url)
+        return 'VCRome V2.1'
+
+    if catalog_number == '06465692001':
+        if (cached_target_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/9e3d281bb849a36c6134be0e348a027ba81123b4#SeqCap_EZ_Exome_v3_capture.bed'
+            or cached_target_file_url is not None):
+            sys.exit(cached_target_file_url)
+        if (is_custom != '' or
+            is_custom is not None):
+            sys.exit(is_custom)
+        if probe_file_url is not None:
+            sys.exit(probe_file_url)
+        if (reagent_name != 'Nimblegen SeqCap EZ Human Exome Library v3.0' or
+            reagent_name != 'Nimblegen EZ Exome v3.0'):
+            sys.exit(reagent_name)
+        if reagent_vendor != 'Nimblegen':
+            sys.exit(reagent_vendor)
+        if target_file_url != 'http://www.nimblegen.com/downloads/annotation/ez_exome_v3/SeqCapEZ_Exome_v3.0_Design_Annotation_files.zip#SeqCap_EZ_Exome_v3_capture.bed':
+            sys.exit(target_file_url)
+        return 'SeqCap_EZ_Exome_v3'
+
+    if catalog_number == '5860504001':
+        if (cached_target_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/a6408d236823a1abb63adb8c38caf37442e20109#Target_Regions/SeqCap_EZ_Exome_v2.bed' or
+            cached_target_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d993d72ee92cd14de3c4a6da435f4a29e932a9db/cache/a6408d236823a1abb63adb8c38caf37442e20109#Target_Regions/SeqCap_EZ_Exome_v2.bed' or
+            cached_target_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/a6408d236823a1abb63adb8c38caf37442e20109#SeqCap_EZ_Exome_v2.bed' or
+            cached_target_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/9129b8e749210d4b74a428448e01a6217f94e0ee/cache/a6408d236823a1abb63adb8c38caf37442e20109#Target_Regions/SeqCap_EZ_Exome_v2.bed'):
+            sys.exit(cached_target_file_url)
+        if (is_custom != '' or
+            is_custom != 'No'):
+            sys.exit(is_custom)
+        if probe_file_url is not None:
+            sys.exit(probe_file_url)
+        if (reagent_name != 'SeqCap EZ Human Exome Library v2.0' or
+            reagent_name != 'SeqCap EZ Exome V2.0'):
+            sys.exit(reagent_name)
+        if (reagent_vendor != 'NimbleGen' or
+            reagent_vendor != 'Nimblegen'):
+            sys.exit(reagent_vendor)
+        if (target_file_url != 'http://www.nimblegen.com/downloads/annotation/ez_exome_v2/SeqCapEZ_Exome_v2.0_Design_Annotation_files.zip#Target_Regions/SeqCap_EZ_Exome_v2.bed' or
+            target_file_url != 'http://www.nimblegen.com/downloads/annotation/ez_exome_v2/SeqCapEZ_Exome_v2.0_Design_Annotation_files.zip#SeqCap_EZ_Exome_v2.bed'):
+            sys.exit(target_file_url)
+        return 'SeqCap_EZ_Exome_v2'
+
+    if catalog_number == '931070':
+        if cached_target_file_url is not None:
+            sys.exit(cached_target_file_url)
+        if is_custom != '':
+            sys.exit(is_custom)
+        if probe_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/whole_exome_agilent_1.1_refseq_plus_3_boosters.baitIntervals.bed':
+            sys.exit(probe_file_url)
+        if reagent_name != 'Custom V2 Exome Bait, 48 RXN X 16 tubes':
+            sys.exit(reagent_name)
+        if reagent_vendor != 'Agilent':
+            sys.exit(reagent_vendor)
+        if target_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/whole_exome_agilent_1.1_refseq_plus_3_boosters.targetIntervals.bed':
+            sys.exit(target_file_url)
+        return 'whole_exome_agilent_1.1_refseq_plus_3_boosters'
+
+    if catalog_number == 'NA':
+        if (cached_target_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/11f8abd6c1d46c06664588b4ca6945715a324139'
+            cached_target_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/4a4c74119a93ac880db4f48ed5ef0b2c72abac4f' or
+            cached_target_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/bb414b0a19ecf13ff83a1513a3fe1966e45b12d1' or
+            cached_target_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/ce6ca462d83586653ba0c93826b957a4ed20f657' or
+            cached_target_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/9129b8e749210d4b74a428448e01a6217f94e0ee/cache/bc1f300fe8bb51f8b0e4df318392d84b691d9d73' or
+            cached_target_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/7907a67ea1ea4c0597b798fe76e0784fdfc5a775' or
+            cached_target_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/e85c146001353997a2456d7304d9a25bcb43be8a' or
+            cached_target_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/50c5194ab0ea02c9df3b2f9f3b43134eb2883a0f' or
+            cached_target_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/b1888969f61a2f718e9d6d05879c5ea8f8e436f4' or
+            cached_target_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d993d72ee92cd14de3c4a6da435f4a29e932a9db/cache/bc1f300fe8bb51f8b0e4df318392d84b691d9d73' or
+            cached_target_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/8a3fcc6223463ce7b5de285792d435aa620001a5' or
+            cached_target_file_url is not None or
+            cached_target_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/2d8b911f7c67e07ea4bf120a7ed3c8dd8b9d206a' or
+            cached_target_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/2068a546e396d1500f5fd835857c6e933a1d84b5' or
+            cached_target_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/bc1f300fe8bb51f8b0e4df318392d84b691d9d73' or
+            cached_target_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/f5394a4f818ecc116206d687fcfa0dbc5f912e3d' or
+            cached_target_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/ede88294372ca987eaff42020cebc6eb5bf11189' or
+            cached_target_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/7e68eadf54d9af4250680f54be920480c1fbe5d1' or
+            cached_target_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/4f7568b17b7e9d6b4f24025fdbb30c7d7cd8b56a' or
+            cached_target_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/33f1f212a9bcdb0b637ef916074b0b2644bb7515' or
+            cached_target_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/7d96bdcacb3cc36260542e5b33c39e21c5b6f676' or
+            cached_target_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/00b29faf640c3cbd53672784fda3ea7c1faea3c6' or
+            cached_target_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/32582a06e016cb9258ca53b12b9321d1b70a9409' or
+            cached_target_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/f07a90dc0413716e5cebcfe30834f0ac3e0779ec'):
+            sys.exit(cached_target_file_url)
+        if (is_custom != '' or
+            is_custom != 'Yes' or
+            is_custom != 'yes'):
+            sys.exit(is_custom)
+        if (probe_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/whole_exome_refseq_coding.baitIntervals.bed' or
+            probe_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/whole_exome_agilent_designed_120.baitIntervals.bed' or
+            probe_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/whole_exome_unique_gc_sorted.baitIntervals.bed' or
+            probe_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/cancer_2000gene_shift170.baitIntervals.bed' or
+            probe_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/whole_exome_agilent_plus_tcga_6k.baitIntervals.bed' or
+            probe_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/fhs_jhs_pilot.baitIntervals.bed' or
+            probe_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/tcga_6k_genes.baitIntervals.bed' or
+            probe_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/gabriel_tcga_ovarian_validation_july2010.baitIntervals.bed' or
+            probe_file_url is not None):
+            sys.exit(probe_file_url)
+        if (reagent_name != 'VCRome V2.1-PKv1' or
+            reagent_name != 'WO2790654 pooled probes' or
+            reagent_name != '120613_HG19_EC_HPV_39235 capture oligo tube' or
+            reagent_name != 'HBV_IDT_probes pooled probes' or
+            reagent_name != 'WO2831284 pooled probes' or
+            reagent_name != 'WO2793950 pooled probes' or
+            reagent_name != 'RT42434_pool_1' or
+            reagent_name != 'TCGA OV Reorder low' or
+            reagent_name != 'HPV IDT all pooled probes' or
+            reagent_name != 'WO2768646 pooled probes' or
+            reagent_name != 'TCGA OV Reorder highest' or
+            reagent_name != 'Custom V2 Exome Bait, 48 RXN X 16 tubes' or
+            reagent_name != 'VCRomeV2.1-PKv1' or
+            reagent_name != 'WO2791991 pooled probes' or
+            reagent_name != 'RT42434_pool_2' or
+            reagent_name != 'RT42434_pool_1b' or
+            reagent_name != 'HPV_IDT_probes capture chip set' or
+            reagent_name != 'RT42434_pool_3' or
+            reagent_name != 'hg18 nimblegen exome version 2' or
+            reagent_name != 'WO2736953 pooled probes' or
+            reagent_name != 'Gapfiller_7m' or
+            reagent_name != 'WO2830729 pooled probes' or
+            reagent_name != 'TCGA OV Reorder high' or
+            reagent_name != 'TCGA OV Reorder lowest'):
+            sys.exit(reagent_name)
+        if (reagent_vendor != 'Agilent' or
+            reagent_vendor != 'Nimblegen' or
+            reagent_vendor != 'IDT'):
+            sys.exit(reagent_vendor)
+        if (target_file_url != 'ftp://genome.wustl.edu/pub/custom_capture/RT42434_pool_3/RT42434_pool_3.bed' or
+            target_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/whole_exome_unique_gc_sorted.targetIntervals.bed' or
+            target_file_url != 'ftp://genome.wustl.edu/pub/custom_capture/RT42434_pool_2/RT42434_pool_2.bed' or
+            target_file_url != 'ftp://genome.wustl.edu/pub/custom_capture/HPV_IDT_all_pooled_probes/37b1fc41fd114b64b94336ff9b4d97ae.bed' or
+            target_file_url != 'ftp://genome.wustl.edu/pub/custom_capture/WO2736953_pooled_probes/784c240d7e6942afb8514ebdb6a950d9.bed' or
+            target_file_url != 'ftp://genome.wustl.edu/pub/custom_capture/TCGA_OV_Reorder_low/TCGA_OV_Reorder_low.bed' or
+            target_file_url != 'ftp://genome.wustl.edu/pub/custom_capture/RT42434_pool_1b/RT42434_pool_1b.bed' or
+            target_file_url != 'ftp://genome.wustl.edu/pub/custom_capture/TCGA_OV_Reorder_highest/TCGA_OV_Reorder_highest.bed' or
+            target_file_url != 'ftp://genome.wustl.edu/pub/custom_capture/hg18_nimblegen_exome_version_2/hg18_nimblegen_exome_version_2.bed' or
+            target_file_url != 'ftp://genome.wustl.edu/pub/custom_capture/HBV_IDT_probes_pooled_probes/40774c8461274a81b4d223161dc84936.bed' or
+            target_file_url != 'ftp://genome.wustl.edu/pub/custom_capture/WO2790654_pooled_probes/1d60152280514553b6a01cd20d2b12e8.bed' or
+            target_file_url != 'ftp://genome.wustl.edu/pub/custom_capture/WO2793950_pooled_probes/0383d24d42694f7a98b17df4f5104b4d.bed' or
+            target_file_url != 'ftp://genome.wustl.edu/pub/custom_capture/WO2768646_pooled_probes/562e962c09834121a17bf931182c90e7.bed' or
+            target_file_url != 'ftp://genome.wustl.edu/pub/custom_capture/120613_HG19_EC_HPV_39235_capture_oligo_tube/6D44F569CD1711E1AFBE5C7646F0A7A3.bed' or
+            target_file_url != 'ftp://genome.wustl.edu/pub/custom_capture/WO2830729_pooled_probes/fe74a5ca10fc4f378a733cdfd308b130.bed' or
+            target_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/whole_exome_refseq_coding.targetIntervals.bed' or
+            target_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/whole_exome_agilent_designed_120.targetIntervals.bed' or
+            target_file_url != 'ftp://genome.wustl.edu/pub/custom_capture/TCGA_OV_Reorder_lowest/TCGA_OV_Reorder_lowest.bed' or
+            target_file_url != 'ftp://genome.wustl.edu/pub/custom_capture/WO2831284_pooled_probes/b431049e36034157903ae2c75302af2d.bed' or
+            target_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/gabriel_tcga_ovarian_validation_july2010.targetIntervals.bed' or
+            target_file_url != 'ftp://genome.wustl.edu/pub/custom_capture/TCGA_OV_Reorder_high/TCGA_OV_Reorder_high.bed' or
+            target_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/fhs_jhs_pilot.targetIntervals.bed' or
+            target_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/tcga_6k_genes.targetIntervals.bed' or
+            target_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/whole_exome_agilent_plus_tcga_6k.targetIntervals.bed' or
+            target_file_url != 'http://www.nimblegen.com/index.html' or
+            target_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/cancer_2000gene_shift170.targetIntervals.bed' or
+            target_file_url != 'ftp://genome.wustl.edu/pub/custom_capture/HPV_IDT_probes_capture_chip_set/AC6217418DAB11E1BD99FC55D6BB89D5.bed' or
+            target_file_url != 'ftp://genome.wustl.edu/pub/custom_capture/WO2791991_pooled_probes/ce2c7958845b4895b878a6eda8a9c521.bed' or
+            target_file_url != 'ftp://genome.wustl.edu/pub/custom_capture/RT42434_pool_1/RT42434_pool_1.bed'):
+            sys.exit(target_file_url)
+
+        if catalog_number == 'Obsolete':
+            if cached_target_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/6e06f65d203c49a50849780f58a53266d2e30f94#2.1M_Human_Exome.bed':
+                sys.exit(cached_target_file_url)
+            if is_custom != '':
+                sys.exit(is_custom)
+            if probe_file_url is not None:
+                sys.exit(probe_file_url)
+            if reagent_name != 'NimbleGen Sequence Capture 2.1M Human Exome Array':
+                sys.exit(reagent_name)
+            if reagent_vendor != 'Nimblegen':
+                sys.exit(reagent_vendor)
+            if target_file_url != 'http://www.nimblegen.com/downloads/annotation/seqcap_exome/2.1M_Human_Exome_Annotation.zip#2.1M_Human_Exome.bed':
+                sys.exit(target_file_url)
+            return '2.1M_Human_Exome'
+
+        if catalog_number == 'S0293689':
+            if (cached_target_file_url is not None or
+                cached_target_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/8aa7f3bc5043420868dd7d43e925e7e739d9af76'):
+                sys.exit(cached_target_file_url)
+            if (is_custom != '' or
+                is_custom is not None):
+                sys.exit(is_custom)
+            if probe_file_url is not None:
+                sys.exit(probe_file_url)
+            if reagent_name != 'SureSelect Human All Exon 38 Mb v2':
+                sys.exit(reagent_name)
+            if reagent_vendor != 'Agilent':
+                sys.exit(reagent_vendor)
+            if target_file_url != 'https://earray.chem.agilent.com/earray/':
+                sys.exit(target_file_url)
+            return 'SureSelect Human All Exon 38 Mb v2'
+
+        if catalog_number == 'S02972011':
+            if cached_target_file_url != 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/8aa7f3bc5043420868dd7d43e925e7e739d9af76':
+                sys.exit(cached_target_file_url)
+            if is_custom != '':
+                sys.exit(is_custom)
+            if probe_file_url is not None:
+                sys.exit(probe_file_url)
+            if reagent_name != 'SureSelect Human All Exon 50Mb Kit':
+                sys.exit(reagent_name)
+            if reagent_vendor != 'Agilent':
+                sys.exit(reagent_vendor)
+            if target_file_url != 'https://earray.chem.agilent.com/earray/':
+                sys.exit(target_file_url)
+            return 'SureSelect Human All Exon 50Mb Kit'
+
+        if catalog_number == 'S04380110':
+            if cached_target_file_url is not None:
+                sys.exit(cached_target_file_url)
+            if is_custom != '':
+                sys.exit(is_custom)
+            if probe_file_url != 'https://earray.chem.agilent.com/suredesign/':
+                sys.exit(probe_file_url)
+            if reagent_name != 'SureSelectXT Human All Exon V5, 16':
+                sys.exit(reagent_name)
+            if reagent_vendor != 'Agilent':
+                sys.exit(reagent_vendor)
+            if target_file_url != 'https://earray.chem.agilent.com/suredesign/':
+                sys.exit(target_file_url)
+            return 'SureSelectXT Human All Exon V5, 16'
+        
+
+def get_capture_kits(json_data, bam_name, library_name, logger):
+    library_data = get_library_data(json_data, bam_name, library_name)
+    kit_set = set()
+    if library_data is None:
+        return list(kit_set)
+    if 'capture_kits' in library_data:
+        capture_kits_list = library_data.get('capture_kits')
+        for capture_kit in capture_kits_list:
+            catalog_number = capture_kit.get('catalog_number')
+            if catalog_number in single_reagentname_kit_catnum_list:
+                kit = get_capture__kit(catalog_number)
+                kit_set.add(kit)
+    return sorted(list(kit_set))
+    
+
+def get_kits(json_data, bam_name, library_name, logger):
+    target_set = get_target_set(json_data, bam_name, library_name, logger)
+    if target_set is not None:
+        kit_name = get_kit_from_target_set(target_set)
+        return kit_name
+    capture_kits = get_capture_kits(json_data, bam_name, library_name, logger)
+    return capture_kits
+    
+    
