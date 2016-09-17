@@ -6,6 +6,8 @@ import logging
 import os
 import sys
 
+from .decider import get_kits
+
 def setup_logging(args):
     logging.basicConfig(
         filename=os.path.join('output.log'),
@@ -44,24 +46,33 @@ def expl_prop(catalog_number_list, json_data, prop_name):
     return prop_dict
 
 
-def expl_target_prop(catalog_number_list, json_data, prop_name):
+def expl_target_prop(target_set_list, json_data, prop_name):
     prop_dict = dict()
-    for catalog_number in catalog_number_list:
-        prop_dict[catalog_number] = set()
+    for target_set in target_set_list:
+        prop_dict[target_set] = set()
     for bam_key in sorted(list(json_data.keys())):
         bam_value = json_data.get(bam_key)
         for library_key in sorted(list(json_data.get(bam_key))):
             if library_key == 'analysis_id' or library_key == 'center_name':
                 continue
             library_dict = json_data.get(bam_key).get(library_key)
+            if 'target_set' not in library_dict:
+                ### track library free BAMs
+                continue
             if 'capture_kits' not in library_dict:
                 ### track library free BAMs
                 continue
+            target_set = library_dict.get('target_set')
+            if len(target_set) > 1:
+                sys.exit(target_set)
+            if len(target_set) == 0:
+                continue
+            this_target_set = target_set[0]
             capture_kits = library_dict.get('capture_kits')
             for capture_kit in capture_kits:
-                catalog_number = capture_kit.get('catalog_number')
+                #catalog_number = capture_kit.get('catalog_number')
                 prop_value = capture_kit.get(prop_name)
-                prop_dict[catalog_number].add(prop_value)
+                prop_dict[this_target_set].add(prop_value)
     return prop_dict
 
 def get_catalog_number_list(json_data):
@@ -111,7 +122,20 @@ def get_target_set_list(json_data):
 def explore_target_set(json_data):
     target_set_list = get_target_set_list(json_data)
     target_catnum_dict = expl_target_prop(target_set_list, json_data, 'catalog_number')
+    target_fileurl_dict = expl_target_prop(target_set_list, json_data, 'cached_target_file_url')
+    target_iscustom_dict = expl_target_prop(target_set_list, json_data, 'is_custom')
+    target_reagentname_dict = expl_target_prop(target_set_list, json_data, 'reagent_name')
+    target_reagentvendor_dict = expl_target_prop(target_set_list, json_data, 'reagent_vendor')
+    target_probefile_dict = expl_target_prop(target_set_list, json_data, 'probe_file_url')
+    target_targetfile_dict = expl_target_prop(target_set_list, json_data, 'target_file_url')
+
     write_dict(target_catnum_dict, 'target_catnum.json')
+    write_dict(target_fileurl_dict, 'target_fileurl.json')
+    write_dict(target_iscustom_dict, 'target_iscustom.json')
+    write_dict(target_reagentname_dict, 'target_reagentname.json')
+    write_dict(target_reagentvendor_dict, 'target_reagentvendor.json')
+    write_dict(target_probefile_dict, 'target_probefile.json')
+    write_dict(target_targetfile_dict, 'target_targetfile.json')
     return
 
 def explore_domain(json_data):
@@ -189,7 +213,7 @@ def main():
     explore_target_set(json_data)
 
     ## core functionality
-    #kit_list = get_kits(json_data, bam_name, library_name, logger)
+    kit_list = get_kits(json_data, bam_name, library_name, logger)
     return
 
 if __name__ == '__main__':
