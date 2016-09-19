@@ -77,7 +77,7 @@ def get_capture__kit(catalog_number, capture_kit):
                         if (reagent_vendor == 'Nimblegen' or
                             reagent_vendor == 'NimbleGen'):
                             if target_file_url == 'http://www.nimblegen.com/downloads/annotation/ez_vcrome_nov2014/VCRome_2.1_design_files.zip#VCRome_2_1_hg19_primary_targets.bed':
-                                kit_name = 'VCRome V2.1'
+                                kit_name = 'VCRome_V2.1'
 
     if catalog_number == '06465692001':
         if (cached_target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/9e3d281bb849a36c6134be0e348a027ba81123b4#SeqCap_EZ_Exome_v3_capture.bed'
@@ -135,8 +135,6 @@ def get_capture__kit(catalog_number, capture_kit):
                         if (reagent_vendor == 'IDT'):
                             if (target_file_url == 'ftp://genome.wustl.edu/pub/custom_capture/120613_HG19_EC_HPV_39235_capture_oligo_tube/6D44F569CD1711E1AFBE5C7646F0A7A3.bed'):
                                 kit_name = '120613_HG19_EC_HPV_39235_capture_oligo_tube'
-            if kit_name is None:
-                sys.exit(catalog_number, capture_kit)
 
         if (cached_target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/4a4c74119a93ac880db4f48ed5ef0b2c72abac4f'):
             if (is_custom == ''):
@@ -145,8 +143,6 @@ def get_capture__kit(catalog_number, capture_kit):
                         if (reagent_vendor == 'IDT'):
                             if (target_file_url == 'ftp://genome.wustl.edu/pub/custom_capture/WO2790654_pooled_probes/1d60152280514553b6a01cd20d2b12e8.bed'):
                                 kit_name = 'WO2790654_pooled_probes'
-            if kit_name is None:
-                sys.exit(catalog_number, capture_kit)
 
         if (cached_target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/bb414b0a19ecf13ff83a1513a3fe1966e45b12d1'):
             if (is_custom == ''):
@@ -155,8 +151,6 @@ def get_capture__kit(catalog_number, capture_kit):
                         if (reagent_vendor == 'Agilent'):
                             if (target_file_url == 'ftp://genome.wustl.edu/pub/custom_capture/RT42434_pool_3/RT42434_pool_3.bed'):
                                 kit_name = 'RT42434_pool_3'
-            if kit_name is None:
-                sys.exit(catalog_number, capture_kit)
 
         if (cached_target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/ce6ca462d83586653ba0c93826b957a4ed20f657'):
             if (is_custom == ''):
@@ -165,8 +159,6 @@ def get_capture__kit(catalog_number, capture_kit):
                         if (reagent_vendor == 'Agilent'):
                             if (target_file_url == 'ftp://genome.wustl.edu/pub/custom_capture/RT42434_pool_2/RT42434_pool_2.bed'):
                                 kit_name = 'RT42434_pool_2'
-            if kit_name is None:
-                sys.exit(catalog_number, capture_kit)
 
         if (cached_target_file_url == 'RT42434_pool_2https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/7907a67ea1ea4c0597b798fe76e0784fdfc5a775'):
             if (is_custom == ''):
@@ -175,18 +167,14 @@ def get_capture__kit(catalog_number, capture_kit):
                         if (reagent_vendor == 'IDT'):
                             if (target_file_url == 'ftp://genome.wustl.edu/pub/custom_capture/WO2736953_pooled_probes/784c240d7e6942afb8514ebdb6a950d9.bed'):
                                 kit_name = 'WO2736953_pooled_probes'
-            if kit_name is None:
-                sys.exit(catalog_number, capture_kit)
 
         if (cached_target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/e85c146001353997a2456d7304d9a25bcb43be8a'):
             if (is_custom == ''):
                 if (probe_file_url is None):
-                    if (reagent_name == ''):
-                        if reagent_vendor == ''):
-                            if (target_file_url == ''):
-                                kit_name = ''
-            if kit_name is None:
-                sys.exit(catalog_number, capture_kit)
+                    if (reagent_name == 'HPV_IDT_probes capture chip set'):
+                        if reagent_vendor == 'IDT'):
+                            if (target_file_url == 'ftp://genome.wustl.edu/pub/custom_capture/HPV_IDT_probes_capture_chip_set/AC6217418DAB11E1BD99FC55D6BB89D5.bed'):
+                                kit_name = 'HPV_IDT_probes_capture_chip_set'
                 
         if (cached_target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/50c5194ab0ea02c9df3b2f9f3b43134eb2883a0f'):
             if (is_custom == ''):
@@ -195,8 +183,6 @@ def get_capture__kit(catalog_number, capture_kit):
                         if reagent_vendor == ''):
                             if (target_file_url == ''):
                                 kit_name = ''
-            if kit_name is None:
-                sys.exit(catalog_number, capture_kit)
                 
         if (cached_target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/b1888969f61a2f718e9d6d05879c5ea8f8e436f4'):
             if (is_custom == ''):
@@ -205,8 +191,6 @@ def get_capture__kit(catalog_number, capture_kit):
                         if reagent_vendor == ''):
                             if (target_file_url == ''):
                                 kit_name = ''
-            if kit_name is None:
-                sys.exit(catalog_number, capture_kit)
                 
         if (cached_target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/8a3fcc6223463ce7b5de285792d435aa620001a5'):
             if (is_custom == ''):
@@ -215,8 +199,6 @@ def get_capture__kit(catalog_number, capture_kit):
                         if reagent_vendor == ''):
                             if (target_file_url == ''):
                                 kit_name = ''
-            if kit_name is None:
-                sys.exit(catalog_number, capture_kit)
                 
         if (cached_target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/2d8b911f7c67e07ea4bf120a7ed3c8dd8b9d206a'):
             if (is_custom == ''):
@@ -225,8 +207,6 @@ def get_capture__kit(catalog_number, capture_kit):
                         if reagent_vendor == ''):
                             if (target_file_url == ''):
                                 kit_name = ''
-            if kit_name is None:
-                sys.exit(catalog_number, capture_kit)
                 
         if (cached_target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/2068a546e396d1500f5fd835857c6e933a1d84b5'):
             if (is_custom == ''):
@@ -235,8 +215,6 @@ def get_capture__kit(catalog_number, capture_kit):
                         if reagent_vendor == ''):
                             if (target_file_url == ''):
                                 kit_name = ''
-            if kit_name is None:
-                sys.exit(catalog_number, capture_kit)
                 
         if (cached_target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/f5394a4f818ecc116206d687fcfa0dbc5f912e3d'):
             if (is_custom == ''):
@@ -245,8 +223,6 @@ def get_capture__kit(catalog_number, capture_kit):
                         if reagent_vendor == ''):
                             if (target_file_url == ''):
                                 kit_name = ''
-            if kit_name is None:
-                sys.exit(catalog_number, capture_kit)
                 
         if (cached_target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/ede88294372ca987eaff42020cebc6eb5bf11189'):
             if (is_custom == ''):
@@ -255,8 +231,6 @@ def get_capture__kit(catalog_number, capture_kit):
                         if reagent_vendor == ''):
                             if (target_file_url == ''):
                                 kit_name = ''
-            if kit_name is None:
-                sys.exit(catalog_number, capture_kit)
                 
         if (cached_target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/7e68eadf54d9af4250680f54be920480c1fbe5d1'):
             if (is_custom == ''):
@@ -265,8 +239,6 @@ def get_capture__kit(catalog_number, capture_kit):
                         if reagent_vendor == ''):
                             if (target_file_url == ''):
                                 kit_name = ''
-            if kit_name is None:
-                sys.exit(catalog_number, capture_kit)
                 
         if (cached_target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/4f7568b17b7e9d6b4f24025fdbb30c7d7cd8b56a'):
             if (is_custom == ''):
@@ -275,8 +247,6 @@ def get_capture__kit(catalog_number, capture_kit):
                         if reagent_vendor == ''):
                             if (target_file_url == ''):
                                 kit_name = ''
-            if kit_name is None:
-                sys.exit(catalog_number, capture_kit)
                 
         if (cached_target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/33f1f212a9bcdb0b637ef916074b0b2644bb7515'):
             if (is_custom == ''):
@@ -285,8 +255,6 @@ def get_capture__kit(catalog_number, capture_kit):
                         if reagent_vendor == ''):
                             if (target_file_url == ''):
                                 kit_name = ''
-            if kit_name is None:
-                sys.exit(catalog_number, capture_kit)
 
         if (cached_target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/7d96bdcacb3cc36260542e5b33c39e21c5b6f676'):
             if (is_custom == ''):
@@ -295,8 +263,6 @@ def get_capture__kit(catalog_number, capture_kit):
                         if reagent_vendor == ''):
                             if (target_file_url == ''):
                                 kit_name = ''
-            if kit_name is None:
-                sys.exit(catalog_number, capture_kit)
 
         if (cached_target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/00b29faf640c3cbd53672784fda3ea7c1faea3c6'):
             if (is_custom == ''):
@@ -305,8 +271,6 @@ def get_capture__kit(catalog_number, capture_kit):
                         if reagent_vendor == ''):
                             if (target_file_url == ''):
                                 kit_name = ''
-            if kit_name is None:
-                sys.exit(catalog_number, capture_kit)
 
         if (cached_target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/32582a06e016cb9258ca53b12b9321d1b70a9409'):
             if (is_custom == ''):
@@ -315,8 +279,6 @@ def get_capture__kit(catalog_number, capture_kit):
                         if reagent_vendor == ''):
                             if (target_file_url == ''):
                                 kit_name = ''
-            if kit_name is None:
-                sys.exit(catalog_number, capture_kit)
 
         if (cached_target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/f07a90dc0413716e5cebcfe30834f0ac3e0779ec'):
             if (is_custom == ''):
@@ -325,8 +287,6 @@ def get_capture__kit(catalog_number, capture_kit):
                         if reagent_vendor == ''):
                             if (target_file_url == ''):
                                 kit_name = ''
-            if kit_name is None:
-                sys.exit(catalog_number, capture_kit)
 
             cached_target_file_url != '' or
             cached_target_file_url != '' or
