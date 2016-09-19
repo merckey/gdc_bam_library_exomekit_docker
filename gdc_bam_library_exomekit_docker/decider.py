@@ -1,13 +1,4 @@
-
-
-def get_kit_from_target_set(target_set):
-    known_targets = ['cancer_2000gene_shift170', 'fhs_jhs_pilot', 'tcga_6k_genes',
-                     'whole_exome_agilent_1.1_refseq_plus_3_boosters', 'whole_exome_agilent_designed_120',
-                     'whole_exome_agilent_plus_tcga_6k', 'whole_exome_refseq_coding', 'whole_exome_refseq_coding'
-    ]
-    if target_set not in known_targets:
-        sys.exit('unknown: %s' % target_set)
-    return target_set
+import sys
 
 def get_library_data(json_data, bam_name, library_name):
     if bam_name in json_data:
@@ -16,36 +7,6 @@ def get_library_data(json_data, bam_name, library_name):
             library_data = bam_data.get(library_name)
             return library_data
     return None
-
-def get_target_set(json_data, bam_name, library_name, logger):
-    library_data = get_library_data(json_data, bam_name, library_name)
-    if library_data is None:
-        return None
-    if 'target_set' in library_data:
-        target_set_list = library_data.get('target_set')
-        if len(target_set_list) == 0:
-            return None
-        elif len(target_set) > 1:
-            sys.exit(target_set_list)
-        elif len(target_set) == 1:
-            return target_set_list[0]
-    return None
-
-def get_capture_singlename_kit(catalog_number):
-    if catalog_number == '05860504001':
-        return 'SeqCap_EZ_Exome_v2'
-    elif catalog_number == '931070':
-        return 'whole_exome_agilent_1.1_refseq_plus_3_boosters'
-    elif catalog_number == 'Obsolete':
-        return 'NimbleGen Sequence Capture 2.1M Human Exome Array'
-    elif catalog_number == 'S0293689':
-        return 'SureSelect Human All Exon 38 Mb v2'
-    elif catalog_number == 'S02972011':
-        return 'SureSelect Human All Exon 50Mb Kit'
-    elif catalog_number == 'S04380110':
-        return 'SureSelectXT Human All Exon V5, 16'
-    sys.exit(catalog_number)
-    return
 
 def get_capture__kit(catalog_number, capture_kit):
     cached_target_file_url = capture_kit.get('cached_target_file_url', None)
@@ -312,7 +273,7 @@ def get_capture__kit(catalog_number, capture_kit):
                         if reagent_vendor == 'Agilent'):
                             if (target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/fhs_jhs_pilot.targetIntervals.bed'):
                                 kit_name = 'fhs_jhs_pilot'
-
+\
         # if (cached_target_file_url is None):
         #     if (is_custom == ''):
         #         if (probe_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/whole_exome_agilent_plus_tcga_6k.baitIntervals.bed'):
@@ -344,6 +305,7 @@ def get_capture__kit(catalog_number, capture_kit):
                         if reagent_vendor == 'Agilent'):
                             if (target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/whole_exome_agilent_designed_120.targetIntervals.bed'):
                                 kit_name = 'whole_exome_agilent_designed_120'
+                                sys.exit('should be picked by target_set')
 
         if (cached_target_file_url is None):
             if (is_custom == ''):
@@ -352,6 +314,7 @@ def get_capture__kit(catalog_number, capture_kit):
                         if reagent_vendor == 'Agilent'):
                             if (target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/whole_exome_refseq_coding.targetIntervals.bed'):
                                 kit_name = 'whole_exome_refseq_coding'
+                                sys.exit('should be picked by target_set')
 
         if catalog_number == 'Obsolete':
             if cached_target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/6e06f65d203c49a50849780f58a53266d2e30f94#2.1M_Human_Exome.bed':
@@ -404,17 +367,12 @@ def get_capture_kits(json_data, bam_name, library_name, logger):
         capture_kits_list = library_data.get('capture_kits')
         for capture_kit in capture_kits_list:
             catalog_number = capture_kit.get('catalog_number')
-            if catalog_number in single_reagentname_kit_catnum_list:
-                kit = get_capture__kit(catalog_number)
-                kit_set.add(kit)
+            kit = get_capture__kit(catalog_number)
+            kit_set.add(kit)
     return sorted(list(kit_set))
     
 
 def get_kits(json_data, bam_name, library_name, logger):
-    target_set = get_target_set(json_data, bam_name, library_name, logger)
-    if target_set is not None:
-        kit_name = get_kit_from_target_set(target_set)
-        return kit_name
     capture_kits = get_capture_kits(json_data, bam_name, library_name, logger)
     return capture_kits
     
