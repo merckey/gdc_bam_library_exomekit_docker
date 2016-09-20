@@ -353,7 +353,7 @@ def get_library_kits(library_data, logger):
     capture_kits = library_data.get('capture_kits', list())
     for capture_kit in capture_kits:
         catalog_number = capture_kit.get('catalog_number')
-        kit_name = get_capture_kit(capture_kit)
+        kit_name = get_capture_kit(capture_kit, logger)
         kit_set.add(kit_name)
     return sorted(list(kit_set))
 
@@ -371,6 +371,7 @@ def get_bam_kits(bam_data, logger):
     return sorted(list(kit_set))
 
 def get_kits(json_data, bam_name, library_name, logger):
+    print(bam_name)
     bam_data = json_data.get(bam_name, list())
     if len(bam_data) == 0:
         return bam_data
@@ -379,4 +380,5 @@ def get_kits(json_data, bam_name, library_name, logger):
         kit_list = get_bam_kits(bam_data, logger)
     else:
         kit_list = get_library_kits(library_data, logger)
+    print(str(kit_list))
     return kit_list
