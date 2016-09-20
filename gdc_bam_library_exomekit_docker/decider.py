@@ -112,7 +112,8 @@ def get_capture_kit(capture_kit, logger):
         if (cached_target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/9129b8e749210d4b74a428448e01a6217f94e0ee/cache/bc1f300fe8bb51f8b0e4df318392d84b691d9d73' or
             cached_target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d993d72ee92cd14de3c4a6da435f4a29e932a9db/cache/bc1f300fe8bb51f8b0e4df318392d84b691d9d73' or
             cached_target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/bc1f300fe8bb51f8b0e4df318392d84b691d9d73'):
-            if (is_custom == 'yes'):
+            if (is_custom == 'yes' or
+                is_custom == 'Yes'):
                 if (probe_file_url is None):
                     if (reagent_name == 'VCRomeV2.1-PKv1' or
                         reagent_name == 'VCRome V2.1-PKv1' or
