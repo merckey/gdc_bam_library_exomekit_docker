@@ -13,7 +13,7 @@ def setup_logging(args):
     logging.basicConfig(
         filename=os.path.join('output.log'),
         level=args.level,
-        filemode='w',
+        filemode='a',
         format='%(asctime)s %(levelname)s %(message)s',
         datefmt='%Y-%m-%d_%H:%M:%S_%Z',
     )
@@ -203,15 +203,15 @@ def main():
     #explore_target_set(json_data)
 
     ### testing ###
-    write_bams_file(json_data)
+    #write_bams_file(json_data)
     #write_bams_libraries_file(json_data)
 
     ### core functionality ###
-    #kit_list = get_kits(json_data, bam_name, library_name, logger)
-    #for kit in kit_list:
-    #    f_name = kit + '.kit'
-    #    with open(f_name, 'w') as f_open:
-    #        f_open.write(kit)
+    kit_list = get_kits(json_data, bam_name, library_name, logger)
+    for kit in kit_list:
+       f_name = kit + '.kit'
+       with open(f_name, 'w') as f_open:
+           f_open.write(kit)
     return
 
 if __name__ == '__main__':
