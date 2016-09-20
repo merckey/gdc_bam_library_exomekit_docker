@@ -1,15 +1,8 @@
 import sys
 
-def get_library_data(json_data, bam_name, library_name):
-    if bam_name in json_data:
-        bam_data = json_data.get(bam_name)
-        if library_name in bam_data:
-            library_data = bam_data.get(library_name)
-            return library_data
-    return None
-
-def get_capture__kit(catalog_number, capture_kit):
+def get_capture_kit(catalog_number, capture_kit):
     cached_target_file_url = capture_kit.get('cached_target_file_url', None)
+    catalog_number = capture_kit.get('catalog_number')
     is_custom = capture_kit.get('is_custom', None)
     probe_file_url = capture_kit.get('probe_file_url', None)
     reagent_name = capture_kit.get('reagent_name', None)
@@ -356,24 +349,36 @@ def get_capture__kit(catalog_number, capture_kit):
 
         if kit_name is None:
             sys.exit(catalog_number, capture_kit)
+        return kit_name
 
-
-def get_capture_kits(json_data, bam_name, library_name, logger):
-    library_data = get_library_data(json_data, bam_name, library_name)
-    kit_set = set()
-    if library_data is None:
-        return list(kit_set)
-    if 'capture_kits' in library_data:
-        capture_kits_list = library_data.get('capture_kits')
-        for capture_kit in capture_kits_list:
-            catalog_number = capture_kit.get('catalog_number')
-            kit = get_capture__kit(catalog_number)
-            kit_set.add(kit)
+def get_library_kits(library_data, logger):
+    capture_kits = library_data.get('capture_kits', list())
+    for capture_kit in capture_kits:
+        catalog_number = capture_kit.get('catalog_number')
+        kit_name = get_capture_kit(capture_kit)
+        kit_set.add(kit_name)
     return sorted(list(kit_set))
-    
+
+def get_bam_kits(bam_data, logger):
+    bam_keys = sorted(list(bam_data.keys()))
+    kit_set = set()
+    for bam_key in bam_keys:
+        if bam_key == 'target_set' or bam_key == 'center_name':
+            continue
+        library_name = bam_key
+        library_data = bam_data.get(library_name)
+        kit_list = get_library_kits(library_data, logger)
+        for kit_name in kit_list:
+            kit_set.add(kit_name)
+    return sorted(list(kit_set))
 
 def get_kits(json_data, bam_name, library_name, logger):
-    capture_kits = get_capture_kits(json_data, bam_name, library_name, logger)
-    return capture_kits
-    
-    
+    bam_data = json_data.get(bam_name, list())
+    if len(bam_data) == 0:
+        return bam_data
+    library_data = bam_data.get(library_name, None)
+    if library_data is None:
+        kit_list = get_bam_kits(bam_data, logger)
+    else:
+        kit_list = get_library_kits(library_data, logger)
+    return kit_list
