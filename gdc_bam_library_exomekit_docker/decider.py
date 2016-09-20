@@ -41,7 +41,7 @@ def get_capture_kit(catalog_number, capture_kit):
                 if probe_file_url is None:
                     if (reagent_name == 'Nimblegen SeqCap EZ Human Exome Library v3.0' or
                         reagent_name == 'Nimblegen EZ Exome v3.0'):
-                        if reagent_vendor == 'Nimblegen':
+                        if (reagent_vendor == 'Nimblegen'):
                             if target_file_url == 'http://www.nimblegen.com/downloads/annotation/ez_exome_v3/SeqCapEZ_Exome_v3.0_Design_Annotation_files.zip#SeqCap_EZ_Exome_v3_capture.bed':
                                 kit_name = 'SeqCap_EZ_Exome_v3'
 
@@ -66,7 +66,7 @@ def get_capture_kit(catalog_number, capture_kit):
             if is_custom == '':
                 if probe_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/whole_exome_agilent_1.1_refseq_plus_3_boosters.baitIntervals.bed':
                     if reagent_name == 'Custom V2 Exome Bait, 48 RXN X 16 tubes':
-                        if reagent_vendor == 'Agilent':
+                        if (reagent_vendor == 'Agilent'):
                             if target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/whole_exome_agilent_1.1_refseq_plus_3_boosters.targetIntervals.bed':
                                 kit_name = 'whole_exome_agilent_1.1_refseq_plus_3_boosters'
 
@@ -261,7 +261,7 @@ def get_capture_kit(catalog_number, capture_kit):
             if (is_custom == ''):
                 if (probe_file_url is None):
                     if (reagent_name == 'TCGA OV Reorder low'):
-                        if reagent_vendor == 'Agilent'):
+                        if (reagent_vendor == 'Agilent'):
                             if (target_file_url == 'ftp://genome.wustl.edu/pub/custom_capture/TCGA_OV_Reorder_low/TCGA_OV_Reorder_low.bed'):
                                 kit_name = 'TCGA_OV_Reorder_low'
 
@@ -269,7 +269,7 @@ def get_capture_kit(catalog_number, capture_kit):
             if (is_custom == ''):
                 if (probe_file_url is None):
                     if (reagent_name == 'WO2831284 pooled probes'):
-                        if reagent_vendor == 'IDT'):
+                        if (reagent_vendor == 'IDT'):
                             if (target_file_url == 'ftp://genome.wustl.edu/pub/custom_capture/WO2831284_pooled_probes/b431049e36034157903ae2c75302af2d.bed'):
                                 kit_name = 'WO2831284_pooled_probes'
 
@@ -277,7 +277,7 @@ def get_capture_kit(catalog_number, capture_kit):
             if (is_custom == ''):
                 if (probe_file_url is None):
                     if (reagent_name == 'WO2793950 pooled probes'):
-                        if reagent_vendor == 'IDT'):
+                        if (reagent_vendor == 'IDT'):
                             if (target_file_url == 'ftp://genome.wustl.edu/pub/custom_capture/WO2793950_pooled_probes/0383d24d42694f7a98b17df4f5104b4d.bed'):
                                 kit_name = 'WO2793950_pooled_probes'
 
@@ -285,7 +285,7 @@ def get_capture_kit(catalog_number, capture_kit):
             if (is_custom == ''):
                 if (probe_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/gabriel_tcga_ovarian_validation_july2010.baitIntervals.bed'):
                     if (reagent_name == 'Custom V2 Exome Bait, 48 RXN X 16 tubes'):
-                        if reagent_vendor == 'Agilent'):
+                        if (reagent_vendor == 'Agilent'):
                             if (target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/gabriel_tcga_ovarian_validation_july2010.targetIntervals.bed'):
                                 kit_name = 'gabriel_tcga_ovarian_validation_july2010'
 
@@ -293,7 +293,7 @@ def get_capture_kit(catalog_number, capture_kit):
             if (is_custom == ''):
                 if (probe_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/tcga_6k_genes.baitIntervals.bed'):
                     if (reagent_name == 'Custom V2 Exome Bait, 48 RXN X 16 tubes'):
-                        if reagent_vendor == 'Agilent'):
+                        if (reagent_vendor == 'Agilent'):
                             if (target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/tcga_6k_genes.targetIntervals.bed'):
                                 kit_name = 'tcga_6k_genes'
 
@@ -301,7 +301,7 @@ def get_capture_kit(catalog_number, capture_kit):
             if (is_custom == ''):
                 if (probe_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/fhs_jhs_pilot.baitIntervals.bed'):
                     if (reagent_name == 'Custom V2 Exome Bait, 48 RXN X 16 tubes'):
-                        if reagent_vendor == 'Agilent'):
+                        if (reagent_vendor == 'Agilent'):
                             if (target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/fhs_jhs_pilot.targetIntervals.bed'):
                                 kit_name = 'fhs_jhs_pilot'
 
@@ -309,7 +309,7 @@ def get_capture_kit(catalog_number, capture_kit):
         #     if (is_custom == ''):
         #         if (probe_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/whole_exome_agilent_plus_tcga_6k.baitIntervals.bed'):
         #             if (reagent_name == 'Custom V2 Exome Bait, 48 RXN X 16 tubes'):
-        #                 if reagent_vendor == 'Agilent'):
+        #                 if (reagent_vendor == 'Agilent'):
         #                     if (target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/whole_exome_agilent_plus_tcga_6k.targetIntervals.bed'):
         #                         kit_name = ''
 
@@ -317,7 +317,7 @@ def get_capture_kit(catalog_number, capture_kit):
             if (is_custom == ''):
                 if (probe_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/cancer_2000gene_shift170.baitIntervals.bed'):
                     if (reagent_name == 'Custom V2 Exome Bait, 48 RXN X 16 tubes'):
-                        if reagent_vendor == 'Agilent'):
+                        if (reagent_vendor == 'Agilent'):
                             if (target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/cancer_2000gene_shift170.targetIntervals.bed'):
                                 kit_name = 'cancer_2000gene_shift170'
 
@@ -325,7 +325,7 @@ def get_capture_kit(catalog_number, capture_kit):
             if (is_custom == ''):
                 if (probe_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/whole_exome_unique_gc_sorted.baitIntervals.bed'):
                     if (reagent_name == 'Custom V2 Exome Bait, 48 RXN X 16 tubes'):
-                        if reagent_vendor == 'Agilent'):
+                        if (reagent_vendor == 'Agilent'):
                             if (target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/whole_exome_unique_gc_sorted.targetIntervals.bed'):
                                 kit_name = 'whole_exome_unique_gc_sorted'
 
@@ -333,7 +333,7 @@ def get_capture_kit(catalog_number, capture_kit):
             if (is_custom == ''):
                 if (probe_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/whole_exome_agilent_designed_120.baitIntervals.bed'):
                     if (reagent_name == 'Custom V2 Exome Bait, 48 RXN X 16 tubes'):
-                        if reagent_vendor == 'Agilent'):
+                        if (reagent_vendor == 'Agilent'):
                             if (target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/whole_exome_agilent_designed_120.targetIntervals.bed'):
                                 kit_name = 'whole_exome_agilent_designed_120'
 
@@ -341,7 +341,7 @@ def get_capture_kit(catalog_number, capture_kit):
             if (is_custom == ''):
                 if (probe_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/whole_exome_refseq_coding.baitIntervals.bed'):
                     if (reagent_name == 'Custom V2 Exome Bait, 48 RXN X 16 tubes'):
-                        if reagent_vendor == 'Agilent'):
+                        if (reagent_vendor == 'Agilent'):
                             if (target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/whole_exome_refseq_coding.targetIntervals.bed'):
                                 kit_name = 'whole_exome_refseq_coding'
 
