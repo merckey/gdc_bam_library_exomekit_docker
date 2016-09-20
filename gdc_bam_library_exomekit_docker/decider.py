@@ -351,6 +351,7 @@ def get_capture_kit(capture_kit, logger):
 
 def get_library_kits(library_data, logger):
     capture_kits = library_data.get('capture_kits', list())
+    kit_set = set()
     for capture_kit in capture_kits:
         catalog_number = capture_kit.get('catalog_number')
         kit_name = get_capture_kit(capture_kit, logger)
