@@ -382,6 +382,8 @@ def get_kits(json_data, bam_name, library_name, logger):
     library_data = bam_data.get(library_name, None)
     if library_data is None:
         kit_list = get_bam_kits(bam_data, logger)
+    elif isinstance(library_data, list) and len(library_data) == 0:
+        return list()
     else:
         kit_list = get_library_kits(library_data, logger)
     return kit_list
