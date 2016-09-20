@@ -305,13 +305,13 @@ def get_capture_kit(capture_kit, logger):
                             if (target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/fhs_jhs_pilot.targetIntervals.bed'):
                                 kit_name = 'fhs_jhs_pilot'
 
-        # if (cached_target_file_url is None):
-        #     if (is_custom == ''):
-        #         if (probe_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/whole_exome_agilent_plus_tcga_6k.baitIntervals.bed'):
-        #             if (reagent_name == 'Custom V2 Exome Bait, 48 RXN X 16 tubes'):
-        #                 if (reagent_vendor == 'Agilent'):
-        #                     if (target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/whole_exome_agilent_plus_tcga_6k.targetIntervals.bed'):
-        #                         kit_name = ''
+        if (cached_target_file_url is None):
+            if (is_custom == ''):
+                if (probe_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/whole_exome_agilent_plus_tcga_6k.baitIntervals.bed'):
+                    if (reagent_name == 'Custom V2 Exome Bait, 48 RXN X 16 tubes'):
+                        if (reagent_vendor == 'Agilent'):
+                            if (target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/whole_exome_agilent_plus_tcga_6k.targetIntervals.bed'):
+                                kit_name = 'whole_exome_agilent_plus_tcga_6k'
 
         if (cached_target_file_url is None):
             if (is_custom == ''):
@@ -344,16 +344,16 @@ def get_capture_kit(capture_kit, logger):
                         if (reagent_vendor == 'Agilent'):
                             if (target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/whole_exome_refseq_coding.targetIntervals.bed'):
                                 kit_name = 'whole_exome_refseq_coding'
-
-        if kit_name is None:
-            sys.exit(catalog_number, capture_kit)
-        return kit_name
+                                
+    if kit_name is None:
+        logger.info(capture_kit)
+        sys.exit(capture_kit)
+    return kit_name
 
 def get_library_kits(library_data, logger):
     capture_kits = library_data.get('capture_kits', list())
     kit_set = set()
     for capture_kit in capture_kits:
-        catalog_number = capture_kit.get('catalog_number')
         kit_name = get_capture_kit(capture_kit, logger)
         kit_set.add(kit_name)
     return sorted(list(kit_set))
@@ -362,10 +362,12 @@ def get_bam_kits(bam_data, logger):
     bam_keys = sorted(list(bam_data.keys()))
     kit_set = set()
     for bam_key in bam_keys:
-        if bam_key == 'target_set' or bam_key == 'center_name':
+        if bam_key == 'target_set' or bam_key == 'center_name' or bam_key == 'analysis_id':
             continue
         library_name = bam_key
         library_data = bam_data.get(library_name)
+        if isinstance(library_data, list) and len(library_data) == 0:
+            continue
         kit_list = get_library_kits(library_data, logger)
         for kit_name in kit_list:
             kit_set.add(kit_name)
@@ -381,5 +383,4 @@ def get_kits(json_data, bam_name, library_name, logger):
         kit_list = get_bam_kits(bam_data, logger)
     else:
         kit_list = get_library_kits(library_data, logger)
-    print(str(kit_list))
     return kit_list
