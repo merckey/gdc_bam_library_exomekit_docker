@@ -88,7 +88,7 @@ def get_capture_kit(catalog_number, capture_kit):
                     if reagent_name == 'SureSelect Human All Exon 38 Mb v2':
                         if reagent_vendor == 'Agilent':
                             if target_file_url == 'https://earray.chem.agilent.com/earray/':
-                                 kit_name = 'SureSelect Human All Exon 38 Mb v2'
+                                 kit_name = 'SureSelect_Human_All_Exon_38_Mb_v2'
 
     if catalog_number == 'S02972011':
         if cached_target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/8aa7f3bc5043420868dd7d43e925e7e739d9af76':
@@ -97,7 +97,7 @@ def get_capture_kit(catalog_number, capture_kit):
                     if reagent_name == 'SureSelect Human All Exon 50Mb Kit':
                         if reagent_vendor == 'Agilent':
                             if target_file_url == 'https://earray.chem.agilent.com/earray/':
-                                kit_name = 'SureSelect Human All Exon 50Mb Kit'
+                                kit_name = 'SureSelect_Human_All_Exon_50Mb_Kit'
 
     if catalog_number == 'S04380110':
         if cached_target_file_url is None:
@@ -106,7 +106,7 @@ def get_capture_kit(catalog_number, capture_kit):
                     if reagent_name == 'SureSelectXT Human All Exon V5, 16':
                         if reagent_vendor == 'Agilent':
                             if target_file_url == 'https://earray.chem.agilent.com/suredesign/':
-                                kit_name = 'SureSelectXT Human All Exon V5, 16'
+                                kit_name = 'SureSelectXT_Human_All_Exon_V5_16'
 
     if catalog_number == 'NA':
         if (cached_target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/9129b8e749210d4b74a428448e01a6217f94e0ee/cache/bc1f300fe8bb51f8b0e4df318392d84b691d9d73' or
