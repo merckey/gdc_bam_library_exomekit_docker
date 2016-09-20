@@ -17,7 +17,7 @@ def get_capture_kit(catalog_number, capture_kit):
                     if reagent_name == 'Nimblegen SeqCap EZ Human Exome Library v2.0':
                         if reagent_vendor == 'Nimblegen':
                             if target_file_url == 'http://www.nimblegen.com/downloads/annotation/ez_exome_v2/SeqCapEZ_Exome_v2.0_Design_Annotation_files.zip#Design_Annotation_files/Target_Regions/SeqCap_EZ_Exome_v2.bed':
-                                 kit_name = 'SeqCap_EZ_Exome_v2'
+                                kit_name = 'SeqCap_EZ_Exome_v2'
 
     if catalog_number == '06 465 668 001':
         if (cached_target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/9129b8e749210d4b74a428448e01a6217f94e0ee/cache/d9d1988de1e3131c585cc963a433844953fae95c#VCRome_2_1_hg19_primary_targets.bed' or
@@ -69,6 +69,44 @@ def get_capture_kit(catalog_number, capture_kit):
                         if reagent_vendor == 'Agilent':
                             if target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/whole_exome_agilent_1.1_refseq_plus_3_boosters.targetIntervals.bed':
                                 kit_name = 'whole_exome_agilent_1.1_refseq_plus_3_boosters'
+
+    if catalog_number == 'Obsolete':
+        if cached_target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/6e06f65d203c49a50849780f58a53266d2e30f94#2.1M_Human_Exome.bed':
+            if is_custom == '':
+                if probe_file_url is None:
+                    if reagent_name == 'NimbleGen Sequence Capture 2.1M Human Exome Array':
+                        if reagent_vendor == 'Nimblegen':
+                            if target_file_url == 'http://www.nimblegen.com/downloads/annotation/seqcap_exome/2.1M_Human_Exome_Annotation.zip#2.1M_Human_Exome.bed':
+                                kit_name = '2.1M_Human_Exome'
+
+    if catalog_number == 'S0293689':
+        if (cached_target_file_url is None or
+            cached_target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/8aa7f3bc5043420868dd7d43e925e7e739d9af76'):
+            if (is_custom == '' or
+                is_custom is None):
+                if probe_file_url is None:
+                    if reagent_name == 'SureSelect Human All Exon 38 Mb v2':
+                        if reagent_vendor == 'Agilent':
+                            if target_file_url == 'https://earray.chem.agilent.com/earray/':
+                                 kit_name = 'SureSelect Human All Exon 38 Mb v2'
+
+    if catalog_number == 'S02972011':
+        if cached_target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/8aa7f3bc5043420868dd7d43e925e7e739d9af76':
+            if is_custom == '':
+                if probe_file_url is None:
+                    if reagent_name == 'SureSelect Human All Exon 50Mb Kit':
+                        if reagent_vendor == 'Agilent':
+                            if target_file_url == 'https://earray.chem.agilent.com/earray/':
+                                kit_name = 'SureSelect Human All Exon 50Mb Kit'
+
+    if catalog_number == 'S04380110':
+        if cached_target_file_url is None:
+            if is_custom == '':
+                if probe_file_url == 'https://earray.chem.agilent.com/suredesign/':
+                    if reagent_name == 'SureSelectXT Human All Exon V5, 16':
+                        if reagent_vendor == 'Agilent':
+                            if target_file_url == 'https://earray.chem.agilent.com/suredesign/':
+                                kit_name = 'SureSelectXT Human All Exon V5, 16'
 
     if catalog_number == 'NA':
         if (cached_target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/9129b8e749210d4b74a428448e01a6217f94e0ee/cache/bc1f300fe8bb51f8b0e4df318392d84b691d9d73' or
@@ -298,7 +336,6 @@ def get_capture_kit(catalog_number, capture_kit):
                         if reagent_vendor == 'Agilent'):
                             if (target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/whole_exome_agilent_designed_120.targetIntervals.bed'):
                                 kit_name = 'whole_exome_agilent_designed_120'
-                                sys.exit('should be picked by target_set')
 
         if (cached_target_file_url is None):
             if (is_custom == ''):
@@ -307,45 +344,6 @@ def get_capture_kit(catalog_number, capture_kit):
                         if reagent_vendor == 'Agilent'):
                             if (target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/whole_exome_refseq_coding.targetIntervals.bed'):
                                 kit_name = 'whole_exome_refseq_coding'
-                                sys.exit('should be picked by target_set')
-
-        if catalog_number == 'Obsolete':
-            if cached_target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/6e06f65d203c49a50849780f58a53266d2e30f94#2.1M_Human_Exome.bed':
-                if is_custom == '':
-                    if probe_file_url is None:
-                        if reagent_name == 'NimbleGen Sequence Capture 2.1M Human Exome Array':
-                            if reagent_vendor == 'Nimblegen':
-                                if target_file_url == 'http://www.nimblegen.com/downloads/annotation/seqcap_exome/2.1M_Human_Exome_Annotation.zip#2.1M_Human_Exome.bed':
-                                    kit_name = '2.1M_Human_Exome'
-
-        if catalog_number == 'S0293689':
-            if (cached_target_file_url is None or
-                cached_target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/8aa7f3bc5043420868dd7d43e925e7e739d9af76'):
-                if (is_custom == '' or
-                    is_custom is None):
-                    if probe_file_url is None:
-                        if reagent_name == 'SureSelect Human All Exon 38 Mb v2':
-                            if reagent_vendor == 'Agilent':
-                                if target_file_url == 'https://earray.chem.agilent.com/earray/':
-                                     kit_name = 'SureSelect Human All Exon 38 Mb v2'
-
-        if catalog_number == 'S02972011':
-            if cached_target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/8aa7f3bc5043420868dd7d43e925e7e739d9af76':
-                if is_custom == '':
-                    if probe_file_url is None:
-                        if reagent_name == 'SureSelect Human All Exon 50Mb Kit':
-                            if reagent_vendor == 'Agilent':
-                                if target_file_url == 'https://earray.chem.agilent.com/earray/':
-                                    kit_name = 'SureSelect Human All Exon 50Mb Kit'
-
-        if catalog_number == 'S04380110':
-            if cached_target_file_url is None:
-                if is_custom == '':
-                    if probe_file_url == 'https://earray.chem.agilent.com/suredesign/':
-                        if reagent_name == 'SureSelectXT Human All Exon V5, 16':
-                            if reagent_vendor == 'Agilent':
-                                if target_file_url == 'https://earray.chem.agilent.com/suredesign/':
-                                    kit_name = 'SureSelectXT Human All Exon V5, 16'
 
         if kit_name is None:
             sys.exit(catalog_number, capture_kit)
