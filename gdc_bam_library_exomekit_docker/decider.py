@@ -1,6 +1,6 @@
 import sys
 
-def get_capture_kit(catalog_number, capture_kit):
+def get_capture_kit(capture_kit, logger):
     cached_target_file_url = capture_kit.get('cached_target_file_url', None)
     catalog_number = capture_kit.get('catalog_number')
     is_custom = capture_kit.get('is_custom', None)
