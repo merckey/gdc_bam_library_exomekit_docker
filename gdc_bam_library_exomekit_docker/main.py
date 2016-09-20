@@ -222,7 +222,7 @@ def main():
     with open(json_path,'r') as data_file:
         json_data = json.load(data_file)
 
-    ### exploration: may be commented out without affect purpose ###
+    ### exploration: may be commented out without affecting purpose ###
     #explore_domain(json_data)
     #explore_target_set(json_data)
 
