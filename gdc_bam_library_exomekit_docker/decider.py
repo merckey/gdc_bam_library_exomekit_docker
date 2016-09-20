@@ -304,7 +304,7 @@ def get_capture_kit(catalog_number, capture_kit):
                         if reagent_vendor == 'Agilent'):
                             if (target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/fhs_jhs_pilot.targetIntervals.bed'):
                                 kit_name = 'fhs_jhs_pilot'
-\
+
         # if (cached_target_file_url is None):
         #     if (is_custom == ''):
         #         if (probe_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/BI/vendor/Agilent/whole_exome_agilent_plus_tcga_6k.baitIntervals.bed'):
