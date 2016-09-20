@@ -6,6 +6,10 @@ import logging
 import os
 import sys
 
+## how to test ## uncomment "testing" functions, run python with garbage -b -l values with real json input, then:
+# $ while read line ; do a=(${line}) && echo python ~/gdc_bam_library_exomekit_docker/gdc_bam_library_exomekit_docker/main.py -j ../bam_libraryname_capturekey.json -b ${a[0]} -l ${a[1]} ; done < bams_libraries.txt | parallel -j 20
+# $ while read line ; do echo python ~/gdc_bam_library_exomekit_docker/gdc_bam_library_exomekit_docker/main.py -j ../bam_libraryname_capturekey.json -b ${line} -l asdf ; done < bams.txt | parallel -j 20
+
 #from .decider import get_kits
 from decider import get_kits
 
@@ -163,7 +167,27 @@ def write_bams_file(json_data):
         for bam_name in bam_list:
             f_open.write(bam_name + '\n')
     return
-    
+
+def write_bams_libraries_file(json_data):
+    bam_dict = dict()
+    for bam_name in sorted(list(json_data.keys())):
+        bam_dict[bam_name] = set()
+        bam_data = json_data.get(bam_name)
+        bam_keys = sorted(list(bam_data.keys()))
+        for bam_key in bam_keys:
+            if bam_key == 'target_set' or bam_key == 'center_name' or bam_key == 'analysis_id':
+                continue
+            library_name = bam_key
+            bam_dict[bam_name].add(library_name)
+    bam_list = sorted(list(bam_dict))
+    f_name = 'bams_libraries.txt'
+    with open(f_name, 'w') as f_open:
+        for bam_name in bam_list:
+            library_list = sorted(list(bam_dict.get(bam_name)))
+            for library_name in library_list:
+                f_open.write(bam_name + '\t' + library_name + '\n')
+    return
+
 
 def main():
     parser = argparse.ArgumentParser('determine kit(s) used by BAM/library')
