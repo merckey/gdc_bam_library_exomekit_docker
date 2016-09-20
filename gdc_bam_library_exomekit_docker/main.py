@@ -19,9 +19,6 @@ def setup_logging(args):
     logger = logging.getLogger(__name__)
     return logger
 
-def get_kit_from_target_set(target_name):
-    return
-
 def get_kit_from_capture_kit(capture_kit):
     return
 
@@ -155,28 +152,8 @@ def explore_domain(json_data):
     write_dict(cat_target_dict, 'target_file_url.json')
     return
 
-def get_kits(json_data, bam_name, library_name, logger):
-    library_json = json_data.get(bam_name).get(library_name)
-    target_set = library_json.get('target_set')
-    if len(target_set) > 1:
-        logger.debug('unexpected number of target_set: %s' % target_set)
-        sys.exit(1)
-    elif len(target_set) == 1:
-        target_name = target_set[0]
-        kit_name = get_kit_from_target_set(target_name)
-        kit_list = [ kit_name ]
-        return kit_list
-    elif len(target_set) == 0:
-        capture_kits = library_json.get('capture_kits')
-        for capture_kit in capture_kits:
-            kit_list = get_kit_from_capture_kit(capture_kit)
-            return kit_list
-    logger.debug('should not be here')
-    sys.exit(1)
-    return
-
 def main():
-    parser = argparse.ArgumentParser('determine kit(s) used by BAM library')
+    parser = argparse.ArgumentParser('determine kit(s) used by BAM/library')
 
     # Logging flags.
     parser.add_argument('-d', '--debug',
@@ -208,12 +185,16 @@ def main():
     with open(json_path,'r') as data_file:
         json_data = json.load(data_file)
 
-    ## exploration: may be commented out without affect purpose
-    explore_domain(json_data)
-    explore_target_set(json_data)
+    ### exploration: may be commented out without affect purpose ###
+    #explore_domain(json_data)
+    #explore_target_set(json_data)
 
     ## core functionality
     kit_list = get_kits(json_data, bam_name, library_name, logger)
+    for kit in kit_list:
+        f_name = kit + '.kit'
+        with open(f_name, 'w') as f_open:
+            f_open.write(kit)
     return
 
 if __name__ == '__main__':
