@@ -363,7 +363,7 @@ def get_bam_kits(bam_data, logger):
     bam_keys = sorted(list(bam_data.keys()))
     kit_set = set()
     for bam_key in bam_keys:
-        if bam_key == 'target_set' or bam_key == 'center_name' or bam_key == 'analysis_id':
+        if bam_key == 'center_name' or bam_key == 'analysis_id':
             continue
         library_name = bam_key
         library_data = bam_data.get(library_name)
@@ -372,7 +372,8 @@ def get_bam_kits(bam_data, logger):
         kit_list = get_library_kits(library_data, logger)
         for kit_name in kit_list:
             kit_set.add(kit_name)
-    return sorted(list(kit_set))
+    kit_list = sorted(list(kit_set))
+    return kit_list
 
 def get_kits(json_data, bam_name, library_name, logger):
     print(bam_name)
