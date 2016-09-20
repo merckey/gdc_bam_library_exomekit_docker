@@ -6,7 +6,8 @@ import logging
 import os
 import sys
 
-from .decider import get_kits
+#from .decider import get_kits
+from decider import get_kits
 
 def setup_logging(args):
     logging.basicConfig(
