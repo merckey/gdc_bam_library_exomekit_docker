@@ -11,12 +11,12 @@ def get_capture_kit(catalog_number, capture_kit):
 
     kit_name = None
     if catalog_number == '05860504001':
-        if cached_target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/a6408d236823a1abb63adb8c38caf37442e20109#Design_Annotation_files/Target_Regions/SeqCap_EZ_Exome_v2.bed':
-            if is_custom == '':
-                if probe_file_url is None:
-                    if reagent_name == 'Nimblegen SeqCap EZ Human Exome Library v2.0':
-                        if reagent_vendor == 'Nimblegen':
-                            if target_file_url == 'http://www.nimblegen.com/downloads/annotation/ez_exome_v2/SeqCapEZ_Exome_v2.0_Design_Annotation_files.zip#Design_Annotation_files/Target_Regions/SeqCap_EZ_Exome_v2.bed':
+        if (cached_target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/a6408d236823a1abb63adb8c38caf37442e20109#Design_Annotation_files/Target_Regions/SeqCap_EZ_Exome_v2.bed'):
+            if (is_custom == ''):
+                if (probe_file_url is None):
+                    if (reagent_name == 'Nimblegen SeqCap EZ Human Exome Library v2.0'):
+                        if (reagent_vendor == 'Nimblegen'):
+                            if (target_file_url == 'http://www.nimblegen.com/downloads/annotation/ez_exome_v2/SeqCapEZ_Exome_v2.0_Design_Annotation_files.zip#Design_Annotation_files/Target_Regions/SeqCap_EZ_Exome_v2.bed'):
                                 kit_name = 'SeqCap_EZ_Exome_v2'
 
     if catalog_number == '06 465 668 001':
@@ -165,87 +165,87 @@ def get_capture_kit(catalog_number, capture_kit):
             if (is_custom == ''):
                 if (probe_file_url is None):
                     if (reagent_name == 'HPV_IDT_probes capture chip set'):
-                        if reagent_vendor == 'IDT'):
+                        if (reagent_vendor == 'IDT'):
                             if (target_file_url == 'ftp://genome.wustl.edu/pub/custom_capture/HPV_IDT_probes_capture_chip_set/AC6217418DAB11E1BD99FC55D6BB89D5.bed'):
                                 kit_name = 'HPV_IDT_probes_capture_chip_set'
-                
+
         if (cached_target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/50c5194ab0ea02c9df3b2f9f3b43134eb2883a0f'):
             if (is_custom == ''):
                 if (probe_file_url is None):
                     if (reagent_name == 'hg18 nimblegen exome version 2'):
-                        if reagent_vendor == 'Nimblegen'):
+                        if (reagent_vendor == 'Nimblegen'):
                             if (target_file_url == 'ftp://genome.wustl.edu/pub/custom_capture/hg18_nimblegen_exome_version_2/hg18_nimblegen_exome_version_2.bed'):
                                 kit_name = 'hg18_nimblegen_exome_version_2'
-                
+
         if (cached_target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/b1888969f61a2f718e9d6d05879c5ea8f8e436f4'):
             if (is_custom == ''):
                 if (probe_file_url is None):
                     if (reagent_name == 'TCGA OV Reorder high'):
-                        if reagent_vendor == 'Agilent'):
+                        if (reagent_vendor == 'Agilent'):
                             if (target_file_url == 'ftp://genome.wustl.edu/pub/custom_capture/TCGA_OV_Reorder_high/TCGA_OV_Reorder_high.bed'):
                                 kit_name = 'TCGA_OV_Reorder_high'
-                
+
         if (cached_target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/8a3fcc6223463ce7b5de285792d435aa620001a5'):
             if (is_custom == ''):
                 if (probe_file_url is None):
                     if (reagent_name == 'WO2791991 pooled probes'):
-                        if reagent_vendor == 'IDT'):
+                        if (reagent_vendor == 'IDT'):
                             if (target_file_url == 'ftp://genome.wustl.edu/pub/custom_capture/WO2791991_pooled_probes/ce2c7958845b4895b878a6eda8a9c521.bed'):
                                 kit_name = 'WO2791991_pooled_probes'
-                
+
         if (cached_target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/2d8b911f7c67e07ea4bf120a7ed3c8dd8b9d206a'):
             if (is_custom == ''):
                 if (probe_file_url is None):
                     if (reagent_name == 'WO2830729 pooled probes'):
-                        if reagent_vendor == 'IDT'):
+                        if (reagent_vendor == 'IDT'):
                             if (target_file_url == 'ftp://genome.wustl.edu/pub/custom_capture/WO2830729_pooled_probes/fe74a5ca10fc4f378a733cdfd308b130.bed'):
                                 kit_name = 'WO2830729_pooled_probes'
-                
+
         if (cached_target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/2068a546e396d1500f5fd835857c6e933a1d84b5'):
             if (is_custom == ''):
                 if (probe_file_url is None):
                     if (reagent_name == 'HBV_IDT_probes pooled probes'):
-                        if reagent_vendor == 'IDT'):
+                        if (reagent_vendor == 'IDT'):
                             if (target_file_url == 'ftp://genome.wustl.edu/pub/custom_capture/HBV_IDT_probes_pooled_probes/40774c8461274a81b4d223161dc84936.bed'):
                                 kit_name = 'HBV_IDT_probes_pooled_probes'
-                
+
         if (cached_target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/f5394a4f818ecc116206d687fcfa0dbc5f912e3d'):
             if (is_custom == ''):
                 if (probe_file_url is None):
                     if (reagent_name == 'RT42434_pool_1'):
-                        if reagent_vendor == 'Agilent'):
+                        if (reagent_vendor == 'Agilent'):
                             if (target_file_url == 'ftp://genome.wustl.edu/pub/custom_capture/RT42434_pool_1/RT42434_pool_1.bed'):
                                 kit_name = 'RT42434_pool_1'
-                
+
         if (cached_target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/ede88294372ca987eaff42020cebc6eb5bf11189'):
             if (is_custom == ''):
                 if (probe_file_url is None):
                     if (reagent_name == 'HPV IDT all pooled probes'):
-                        if reagent_vendor == 'IDT'):
+                        if (reagent_vendor == 'IDT'):
                             if (target_file_url == 'ftp://genome.wustl.edu/pub/custom_capture/HPV_IDT_all_pooled_probes/37b1fc41fd114b64b94336ff9b4d97ae.bed'):
                                 kit_name = 'HPV_IDT_all_pooled_probes'
-                
+
         if (cached_target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/7e68eadf54d9af4250680f54be920480c1fbe5d1'):
             if (is_custom == ''):
                 if (probe_file_url is None):
                     if (reagent_name == 'TCGA OV Reorder lowest'):
-                        if reagent_vendor == 'Agilent'):
+                        if (reagent_vendor == 'Agilent'):
                             if (target_file_url == 'ftp://genome.wustl.edu/pub/custom_capture/TCGA_OV_Reorder_lowest/TCGA_OV_Reorder_lowest.bed'):
                                 kit_name = 'TCGA_OV_Reorder_lowest'
-                
+
         if (cached_target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/4f7568b17b7e9d6b4f24025fdbb30c7d7cd8b56a'):
             if (is_custom == ''):
                 if (probe_file_url is None):
                     if (reagent_name == 'RT42434_pool_1b'):
-                        if reagent_vendor == 'Agilent'):
+                        if (reagent_vendor == 'Agilent'):
                             if (target_file_url == 'ftp://genome.wustl.edu/pub/custom_capture/RT42434_pool_1b/RT42434_pool_1b.bed'):
                                 kit_name = 'RT42434_pool_1b'
-                
+
         if (cached_target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/33f1f212a9bcdb0b637ef916074b0b2644bb7515'):
             if (is_custom == ''):
                 if (probe_file_url is None):
                     if (reagent_name == 'TCGA OV Reorder highest'):
-                        if reagent_vendor == 'Agilent'):
+                        if (reagent_vendor == 'Agilent'):
                             if (target_file_url == 'ftp://genome.wustl.edu/pub/custom_capture/TCGA_OV_Reorder_highest/TCGA_OV_Reorder_highest.bed'):
                                 kit_name = 'TCGA_OV_Reorder_highest'
 
@@ -253,7 +253,7 @@ def get_capture_kit(catalog_number, capture_kit):
             if (is_custom == ''):
                 if (probe_file_url is None):
                     if (reagent_name == 'WO2768646 pooled probes'):
-                        if reagent_vendor == 'IDT'):
+                        if (reagent_vendor == 'IDT'):
                             if (target_file_url == 'ftp://genome.wustl.edu/pub/custom_capture/WO2768646_pooled_probes/562e962c09834121a17bf931182c90e7.bed'):
                                 kit_name = 'WO2768646_pooled_probes'
 
