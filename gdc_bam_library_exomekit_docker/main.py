@@ -152,6 +152,18 @@ def explore_domain(json_data):
     write_dict(cat_target_dict, 'target_file_url.json')
     return
 
+def write_bams_file(json_data):
+    bam_set = set()
+    for bam_name in sorted(list(json_data.keys())):
+        bam_set.add(bam_name)
+    bam_list = sorted(list(bam_set))
+    f_name = 'bams.txt'
+    with open(f_name, 'w') as f_open:
+        for bam_name in bam_list:
+            f_open.write(bam_name + '\n')
+    return
+    
+
 def main():
     parser = argparse.ArgumentParser('determine kit(s) used by BAM/library')
 
@@ -189,12 +201,16 @@ def main():
     #explore_domain(json_data)
     #explore_target_set(json_data)
 
-    ## core functionality
-    kit_list = get_kits(json_data, bam_name, library_name, logger)
-    for kit in kit_list:
-        f_name = kit + '.kit'
-        with open(f_name, 'w') as f_open:
-            f_open.write(kit)
+    ### testing ###
+    write_bams_file(json_data)
+    #write_bams_libraries_file(json_data)
+
+    ### core functionality ###
+    #kit_list = get_kits(json_data, bam_name, library_name, logger)
+    #for kit in kit_list:
+    #    f_name = kit + '.kit'
+    #    with open(f_name, 'w') as f_open:
+    #        f_open.write(kit)
     return
 
 if __name__ == '__main__':
