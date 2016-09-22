@@ -121,6 +121,9 @@ def get_capture_kit(capture_kit, logger):
                         if (reagent_vendor == 'Nimblegen'):
                             if (target_file_url == 'http://www.nimblegen.com/index.html'):
                                 kit_name = 'VCRomeV2.1-PKv1'
+                                kit_name = 'Gapfiller_7m'
+                                #unable to find these bed files
+                                return None
 
         if (cached_target_file_url == 'https://bitbucket.org/cghub/cghub-capture-kit-info/raw/d8b126dd4f33eb7164535e00f0ec9a5985056f34/cache/11f8abd6c1d46c06664588b4ca6945715a324139'):
             if (is_custom == ''):
@@ -356,7 +359,8 @@ def get_library_kits(library_data, logger):
     kit_set = set()
     for capture_kit in capture_kits:
         kit_name = get_capture_kit(capture_kit, logger)
-        kit_set.add(kit_name)
+        if kit_name is not None:
+            kit_set.add(kit_name)
     return sorted(list(kit_set))
 
 def get_bam_kits(bam_data, logger):
